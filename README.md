@@ -5,8 +5,8 @@ Removes silence from a video using ffmpeg
 # Getting Started
 
 1. `yarn install`
-1. `npx ts-node src\index.ts "<path_to_video>"`
 1. Ensure [`ffmpeg`](https://ffmpeg.org/) is on your `PATH`.
+1. `npx ts-node src\index.ts "<path_to_video>"`
 1. Adjust noise detection tolerance if necessary, e.g. `npx ts-node src\index.ts "<path_to_video>" 0.001 0.5`
    - See [silencedetect](https://ffmpeg.org/ffmpeg-filters.html#silencedetect) options for `noise` and `duration`.
 
