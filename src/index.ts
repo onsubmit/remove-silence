@@ -9,8 +9,6 @@ const appConfig = new AppConfig().validate();
 
 (async (): Promise<void> => {
   const videoDurationInSeconds = await FFmpeg.getVideoDurationInSeconds(appConfig.inputVideoPath);
-  console.log(videoDurationInSeconds);
-
   const silenceTimestamps = await FFmpeg.getSilenceTimestamps(
     appConfig.inputVideoPath,
     appConfig.noiseTolerance,
@@ -28,8 +26,6 @@ const appConfig = new AppConfig().validate();
   const silentTimeFrames: TimeFrame[] = chunk(silenceTimestamps, 2).map((c) => {
     return { start: c[0].value, end: c[1].value };
   });
-
-  console.log(silentTimeFrames);
 
   const clipDirectory = path.join(path.dirname(appConfig.inputVideoPath), "clips");
   const clipListPath = path.join(clipDirectory, "clips.txt");
