@@ -35,8 +35,8 @@ class FFmpeg {
 
   static async getSilenceTimestamps(inputVideoPath: string): Promise<Timestamp[]> {
     const args: string[] = FFmpeg.getSilenceDetectionOptions(inputVideoPath, {
-      noiseTolerance: 0.002,
-      durationInSections: 0.5,
+      noiseTolerance: 0.02,
+      durationInSeconds: 0.75,
     });
 
     const silenceTimestamps: Timestamp[] = [];
@@ -153,7 +153,7 @@ class FFmpeg {
 
       // Create the filtergraph and used to filter the stream.
       "-af",
-      `silencedetect=n=${silenceDetectOptions.noiseTolerance}:d=${silenceDetectOptions.durationInSections}`,
+      `silencedetect=n=${silenceDetectOptions.noiseTolerance}:d=${silenceDetectOptions.durationInSeconds}`,
 
       // Use a null muxer so no output is generated.
       // https://ffmpeg.org/ffmpeg-formats.html#null

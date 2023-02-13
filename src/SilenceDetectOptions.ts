@@ -15,5 +15,5 @@ export type SilenceDetectOptions = {
    *
    * @type {number}
    */
-  durationInSections: number;
+  durationInSeconds: number;
 };
