@@ -11,7 +11,12 @@ const appConfig = new AppConfig().validate();
   const videoDurationInSeconds = await FFmpeg.getVideoDurationInSeconds(appConfig.inputVideoPath);
   console.log(videoDurationInSeconds);
 
-  const silenceTimestamps = await FFmpeg.getSilenceTimestamps(appConfig.inputVideoPath);
+  const silenceTimestamps = await FFmpeg.getSilenceTimestamps(
+    appConfig.inputVideoPath,
+    appConfig.noiseTolerance,
+    appConfig.minNoiseDurationInSeconds
+  );
+
   if (!silenceTimestamps.length) {
     process.exit(0);
   }

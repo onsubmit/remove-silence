@@ -33,10 +33,14 @@ class FFmpeg {
     return duration;
   }
 
-  static async getSilenceTimestamps(inputVideoPath: string): Promise<Timestamp[]> {
+  static async getSilenceTimestamps(
+    inputVideoPath: string,
+    noiseTolerance: number,
+    minNoiseDurationInSeconds: number
+  ): Promise<Timestamp[]> {
     const args: string[] = FFmpeg.getSilenceDetectionOptions(inputVideoPath, {
-      noiseTolerance: 0.02,
-      durationInSeconds: 0.75,
+      noiseTolerance,
+      durationInSeconds: minNoiseDurationInSeconds,
     });
 
     const silenceTimestamps: Timestamp[] = [];
