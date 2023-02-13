@@ -106,17 +106,19 @@ class FFmpeg {
       /* ignore */
     }
   ): Promise<number> {
+    console.log(`ffmpeg ${args.join(" ")}`);
+
     const ffmpeg = spawn("ffmpeg", args);
 
-    // ffmpeg.stdout.setEncoding("utf8");
-    // ffmpeg.stdout.on("data", (data) => {
-    //   console.log("stdout: " + data);
-    // });
+    ffmpeg.stdout.setEncoding("utf8");
+    ffmpeg.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
+    });
 
-    // ffmpeg.stderr.setEncoding("utf8");
-    // ffmpeg.stderr.on("data", (data) => {
-    //   console.log("stderr: " + data);
-    // });
+    ffmpeg.stderr.setEncoding("utf8");
+    ffmpeg.stderr.on("data", (data) => {
+      console.log(`stderr: ${data}`);
+    });
 
     for await (const value of ffmpeg.stderr) {
       stderrHandler(value);
