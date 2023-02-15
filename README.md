@@ -9,6 +9,8 @@ Removes silence from a video using ffmpeg
 1. `npx ts-node src\index.ts "<path_to_video>"`
 1. Adjust noise detection tolerance if necessary, e.g. `npx ts-node src\index.ts "<path_to_video>" 0.001 0.5`
    - See [silencedetect](https://ffmpeg.org/ffmpeg-filters.html#silencedetect) options for `noise` and `duration`.
+1. Adjust trimming buffers if necessary, e.g. `npx ts-node src\index.ts "<path_to_video>" 0.001 0.5 0.2 0.3`
+   - This will add 0.2s to the beginning of each clip and 0.3s to the end of each clip.
 
 # How this works
 
