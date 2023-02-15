@@ -4,11 +4,15 @@ export default class AppConfig {
   private _inputVideoPath: string;
   private _noiseTolerance: number;
   private _minNoiseDurationInSeconds: number;
+  private _bufferBeforeInSeconds: number;
+  private _bufferAfterInSeconds: number;
 
   constructor() {
     this._inputVideoPath = process.argv[2] || "";
     this._noiseTolerance = parseFloat(process.argv[3]) || 0.02;
-    this._minNoiseDurationInSeconds = parseFloat(process.argv[4]) || 0.75;
+    this._minNoiseDurationInSeconds = parseFloat(process.argv[4]) || 1;
+    this._bufferBeforeInSeconds = parseFloat(process.argv[5]) || 0.1;
+    this._bufferAfterInSeconds = parseFloat(process.argv[6]) || 0.25;
   }
 
   get inputVideoPath(): string {
@@ -21,6 +25,14 @@ export default class AppConfig {
 
   get minNoiseDurationInSeconds(): number {
     return this._minNoiseDurationInSeconds;
+  }
+
+  get bufferBeforeInSeconds(): number {
+    return this._bufferBeforeInSeconds;
+  }
+
+  get bufferAfterInSeconds(): number {
+    return this._bufferAfterInSeconds;
   }
 
   validate = (): this => {

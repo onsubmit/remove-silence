@@ -33,7 +33,13 @@ const appConfig = new AppConfig().validate();
 
   let counter = 0;
   if (silentTimeFrames[0].start !== 0) {
-    await FFmpeg.writeTempClip(appConfig.inputVideoPath, counter++, 0, silentTimeFrames[0].start, clipListPathStream);
+    await FFmpeg.writeTempClip(
+      appConfig.inputVideoPath,
+      counter++,
+      0,
+      silentTimeFrames[0].start + appConfig.bufferAfterInSeconds,
+      clipListPathStream
+    );
   }
 
   const { length } = silentTimeFrames;
@@ -41,8 +47,8 @@ const appConfig = new AppConfig().validate();
     await FFmpeg.writeTempClip(
       appConfig.inputVideoPath,
       counter++,
-      silentTimeFrames[i].end,
-      silentTimeFrames[i + 1].start,
+      silentTimeFrames[i].end - appConfig.bufferBeforeInSeconds,
+      silentTimeFrames[i + 1].start + appConfig.bufferAfterInSeconds,
       clipListPathStream
     );
   }
@@ -51,7 +57,7 @@ const appConfig = new AppConfig().validate();
     await FFmpeg.writeTempClip(
       appConfig.inputVideoPath,
       counter++,
-      silentTimeFrames[length - 1].end,
+      silentTimeFrames[length - 1].end - appConfig.bufferBeforeInSeconds,
       videoDurationInSeconds,
       clipListPathStream
     );
