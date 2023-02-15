@@ -1,4 +1,4 @@
-# remove-silence
+# onsubmit/remove-silence
 
 Removes silence from a video using ffmpeg
 
