@@ -42,3 +42,14 @@ This tool runs `ffmpeg` several times to:
 # See also
 
 https://github.com/padvincenzo/silence-speedup
+
+# Using Docker
+
+## To build
+
+1. Install Docker Desktop
+2. Run `docker build . -t remove-silence`
+
+## To Run
+
+1. Run `docker run --rm remove-silence <filename> <parameters>`
